@@ -1,0 +1,38 @@
+* Tue Nov 23 2010 Ling Yue <ling.yue@intel.com> - 1.0.21
+- Add ogg/vorbis/flac build requirements (BMC#10323)
+
+* Thu Jun 24 2010 Vivian Zhang <vivian.zhang@intel.com> - 1.0.21
+- Add %doc for man pages
+
+* Sat Feb 27 2010 Anas Nashif <anas.nashif@intel.com> - 1.0.21
+- Updated with latest spectacle
+- Include YAML file in source rpm
+
+* Mon Feb 22 2010 Anas Nashif <anas.nashif@intel.com> - 1.0.21
+- Use spectacle
+
+* Thu Jan 14 2010 Vivian Zhang <vivian.zhang@intel.com> - 1.0.21
+- Update to 1.0.21
+
+* Mon Dec 14 2009 Yi Yang <yi.y.yang@intel.com> 1.0.20
+- Remove "unset LD_AS_NEEDED"
+
+* Tue Sep 22 2009 Anas Nashif <anas.nashif@intel.com> - 1.0.20
+- Update to 1.0.20
+
+* Mon Jun 01 2009 Passion Zhao <passion.zhao@intel.com> 1.0.17-2
+- Add voc-aiff-patch-1.0.17.diff to address CVE-2009-1788, CVE-2009-1791
+
+* Fri Apr 03 2009 Passion Zhao <passion.zhao@intel.com> 1.0.17
+- Fix CVE-2009-0757: 
+  Integer overflow in libsndfile 1.0.18, as used in Winamp and other products, 
+  allows context-dependent attackers to execute arbitrary code via crafted 
+  description chunks in a CAF audio file, leading to a heap-based buffer overflow.
+  
+
+* Fri Dec 26 2008 Arjan van de Ven <arjan@linux.intel.com> 1.0.17
+- Make work with new autoconf
+
+* Wed Dec 17 2008 Arjan van de Ven <arjan@linux.intel.com> 1.0.17
+- Clean up the spec
+
