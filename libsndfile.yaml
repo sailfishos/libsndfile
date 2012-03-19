@@ -1,12 +1,12 @@
 Name: libsndfile
 Summary: Library for reading and writing sound files
-Version: 1.0.21
+Version: 1.0.25
 Release: 1
 Group: System/Libraries
 License: LGPLv2+
 URL: http://www.mega-nerd.com/libsndfile/
 Sources:
-    - http://www.mega-nerd.com/libsndfile/libsndfile-%{version}.tar.gz
+    - http://www.mega-nerd.com/libsndfile/files/libsndfile-%{version}.tar.gz
 Description: |
     libsndfile is a C library for reading and writing sound files such as
     AIFF, AU, WAV, and others through one standard interface. It can
@@ -31,3 +31,8 @@ SubPackages:
           AIFF, AU, WAV, and others through one standard interface.
           This package contains files needed to develop with libsndfile.
 
+    - Name: docs
+      Summary: Document files for libsndfile
+      Group: Development/Libraries
+      Description: |
+          Document files for libsndfile.

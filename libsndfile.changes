@@ -1,3 +1,7 @@
+* Mon Mar 19 2012 Marko Saukko <marko.saukko@gmail.com> - 1.0.25
+- Update to version 1.0.25
+- Added docs package.
+
 * Tue Nov 23 2010 Ling Yue <ling.yue@intel.com> - 1.0.21
 - Add ogg/vorbis/flac build requirements (BMC#10323)
 
