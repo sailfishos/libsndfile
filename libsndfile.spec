@@ -14,6 +14,7 @@ License:    LGPLv2+
 URL:        http://www.mega-nerd.com/libsndfile/
 Source0:    http://www.mega-nerd.com/libsndfile/files/libsndfile-%{version}.tar.gz
 Source100:  libsndfile.yaml
+Patch0:     libsndfile-aarch64.patch
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(alsa)
@@ -55,6 +56,8 @@ Document files for libsndfile.
 %prep
 %setup -q -n %{name}-%{version}
 
+# libsndfile-aarch64.patch
+%patch0 -p1
 # >> setup
 # << setup
 
