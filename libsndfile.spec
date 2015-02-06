@@ -8,13 +8,14 @@
 Name:       libsndfile
 Summary:    Library for reading and writing sound files
 Version:    1.0.25
-Release:    1
+Release:    2
 Group:      System/Libraries
 License:    LGPLv2+
 URL:        http://www.mega-nerd.com/libsndfile/
 Source0:    http://www.mega-nerd.com/libsndfile/files/libsndfile-%{version}.tar.gz
 Source100:  libsndfile.yaml
 Patch0:     libsndfile-aarch64.patch
+Patch1:     CVE-2014-9496.patch
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(alsa)
@@ -58,6 +59,8 @@ Document files for libsndfile.
 
 # libsndfile-aarch64.patch
 %patch0 -p1
+# CVE-2014-9496.patch
+%patch1 -p1
 # >> setup
 # << setup
 
