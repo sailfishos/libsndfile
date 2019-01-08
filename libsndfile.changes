@@ -1,3 +1,6 @@
+* Tue Jan 08 2019 Tomi Leppänen <tomi.leppanen@jolla.com> - 1.0.25-3
+- [packaging] Rename libsndfile-docs to libsndfile. Contributes to JB#38578
+
 * Mon Feb 16 2015 Pasi Sjöholm <pasi.sjoholm@jollamobile.com> - 1.0.25
 - Remove unneeded files
 
