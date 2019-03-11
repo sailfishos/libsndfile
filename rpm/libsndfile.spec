@@ -1,15 +1,16 @@
 Name:       libsndfile
 Summary:    Library for reading and writing sound files
-Version:    1.0.25
-Release:    3
+Version:    1.0.28
+Release:    1
 Group:      System/Libraries
 License:    LGPLv2+
 URL:        http://www.mega-nerd.com/libsndfile/
 Source0:    http://www.mega-nerd.com/libsndfile/files/libsndfile-%{version}.tar.gz
-Patch0:     libsndfile-aarch64.patch
-Patch1:     CVE-2014-9496.patch
+Patch0:     libsndfile-cmake-fix-man-pages.patch
+Patch1:     libsndfile-cmake-target-name.patch
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
+BuildRequires:  cmake
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(ogg)
 BuildRequires:  pkgconfig(vorbis)
@@ -42,17 +43,14 @@ Obsoletes:  %{name}-docs
 Man pages for %{name}.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{version}/%{name}
 
-# libsndfile-aarch64.patch
 %patch0 -p1
-# CVE-2014-9496.patch
 %patch1 -p1
 
 %build
 
-%configure --disable-static \
-    --disable-dependency-tracking
+%cmake
 
 make %{?_smp_mflags}
 
@@ -63,7 +61,7 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}
 install -m0644 -t %{buildroot}%{_docdir}/%{name}-%{version} \
         AUTHORS README
-mv %{buildroot}%{_docdir}/%{name}1-dev/html \
+mv %{buildroot}%{_docdir}/%{name} \
    %{buildroot}%{_docdir}/%{name}-%{version}/html
 
 %post -p /sbin/ldconfig
@@ -82,6 +80,7 @@ mv %{buildroot}%{_docdir}/%{name}1-dev/html \
 %{_includedir}/sndfile.hh
 %{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/sndfile.pc
+%{_libdir}/cmake/%{name}/*.cmake
 
 %files doc
 %defattr(-,root,root,-)
