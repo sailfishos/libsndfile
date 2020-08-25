@@ -1,13 +1,10 @@
 Name:       libsndfile
 Summary:    Library for reading and writing sound files
-Version:    1.0.28
+Version:    1.0.29
 Release:    1
-Group:      System/Libraries
 License:    LGPLv2+
 URL:        http://www.mega-nerd.com/libsndfile/
-Source0:    http://www.mega-nerd.com/libsndfile/files/libsndfile-%{version}.tar.gz
-Patch0:     libsndfile-cmake-fix-man-pages.patch
-Patch1:     libsndfile-cmake-target-name.patch
+Source0:    libsndfile-%{version}.tar.gz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  cmake
@@ -15,6 +12,7 @@ BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(ogg)
 BuildRequires:  pkgconfig(vorbis)
 BuildRequires:  pkgconfig(flac)
+BuildRequires:  pkgconfig(opus)
 
 %description
 libsndfile is a C library for reading and writing sound files such as
@@ -25,7 +23,6 @@ compiles and runs on *nix, MacOS, and Win32.
 
 %package devel
 Summary:    Development files for libsndfile
-Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 
 %description devel
@@ -33,9 +30,18 @@ libsndfile is a C library for reading and writing sound files such as
 AIFF, AU, WAV, and others through one standard interface.
 This package contains files needed to develop with libsndfile.
 
+%package utils
+Summary:    Command Line Utilities for libsndfile
+Requires:   %{name} = %{version}-%{release}
+
+%description utils
+libsndfile is a C library for reading and writing sound files such as
+AIFF, AU, WAV, and others through one standard interface.
+This package contains command line utilities for libsndfile.
+
 %package doc
 Summary:    Documentation for %{name}
-Group:      Documentation
+BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Obsoletes:  %{name}-docs
 
@@ -43,24 +49,17 @@ Obsoletes:  %{name}-docs
 Man pages for %{name}.
 
 %prep
-%setup -q -n %{name}-%{version}/%{name}
-
-%patch0 -p1
-%patch1 -p1
+%autosetup -n %{name}-%{version}/%{name}
 
 %build
+%cmake -DBUILD_SHARED_LIBS=ON -DBUILD_EXAMPLES=OFF
 
-%cmake
-
-make %{?_smp_mflags}
+%make_build
 
 %install
-rm -rf %{buildroot}
 %make_install
 
 mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}
-install -m0644 -t %{buildroot}%{_docdir}/%{name}-%{version} \
-        AUTHORS README
 mv %{buildroot}%{_docdir}/%{name} \
    %{buildroot}%{_docdir}/%{name}-%{version}/html
 
@@ -71,8 +70,12 @@ mv %{buildroot}%{_docdir}/%{name} \
 %files
 %defattr(-,root,root,-)
 %license COPYING
-%{_bindir}/*
 %{_libdir}/%{name}.so.*
+
+%files utils
+%defattr(-,root,root,-)
+%{_bindir}/sndfile-*
+%{_mandir}/man1/sndfile-*
 
 %files devel
 %defattr(-,root,root,-)
@@ -80,9 +83,9 @@ mv %{buildroot}%{_docdir}/%{name} \
 %{_includedir}/sndfile.hh
 %{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/sndfile.pc
-%{_libdir}/cmake/%{name}/*.cmake
+%{_libdir}/cmake/SndFile/*.cmake
 
 %files doc
 %defattr(-,root,root,-)
-%{_mandir}/man1/sndfile-*
-%{_docdir}/%{name}-%{version}
+%doc AUTHORS README NEWS
+%{_docdir}/%{name}-%{version}/html
