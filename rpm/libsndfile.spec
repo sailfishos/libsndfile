@@ -8,6 +8,7 @@ Source0:    libsndfile-%{version}.tar.gz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  cmake
+BuildRequires:  python3-devel
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(ogg)
 BuildRequires:  pkgconfig(vorbis)
