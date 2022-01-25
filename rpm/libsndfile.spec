@@ -1,9 +1,9 @@
 Name:       libsndfile
 Summary:    Library for reading and writing sound files
-Version:    1.0.29
+Version:    1.0.31
 Release:    1
 License:    LGPLv2+
-URL:        http://www.mega-nerd.com/libsndfile/
+URL:        http://libsndfile.github.io/libsndfile/
 Source0:    libsndfile-%{version}.tar.gz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
