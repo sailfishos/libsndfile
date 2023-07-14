@@ -1,6 +1,6 @@
 Name:       libsndfile
 Summary:    Library for reading and writing sound files
-Version:    1.1.0
+Version:    1.2.0
 Release:    1
 License:    LGPLv2+
 URL:        http://libsndfile.github.io/libsndfile/
