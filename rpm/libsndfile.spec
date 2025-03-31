@@ -3,7 +3,7 @@ Summary:    Library for reading and writing sound files
 Version:    1.2.2
 Release:    1
 License:    LGPLv2+
-URL:        http://libsndfile.github.io/libsndfile/
+URL:        https://github.com/sailfishos/libsndfile
 Source0:    libsndfile-%{version}.tar.gz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
@@ -44,7 +44,6 @@ This package contains command line utilities for libsndfile.
 Summary:    Documentation for %{name}
 BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
-Obsoletes:  %{name}-docs
 
 %description doc
 Man pages for %{name}.
@@ -69,17 +68,14 @@ mv %{buildroot}%{_docdir}/%{name} \
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root,-)
 %license COPYING
 %{_libdir}/%{name}.so.*
 
 %files utils
-%defattr(-,root,root,-)
 %{_bindir}/sndfile-*
 %{_mandir}/man1/sndfile-*
 
 %files devel
-%defattr(-,root,root,-)
 %{_includedir}/sndfile.h
 %{_includedir}/sndfile.hh
 %{_libdir}/%{name}.so
@@ -87,6 +83,5 @@ mv %{buildroot}%{_docdir}/%{name} \
 %{_libdir}/cmake/SndFile/*.cmake
 
 %files doc
-%defattr(-,root,root,-)
 %doc AUTHORS CHANGELOG.md README NEWS.OLD
 %{_docdir}/%{name}-%{version}/html
